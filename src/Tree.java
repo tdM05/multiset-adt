@@ -1,3 +1,5 @@
 public class Tree {
-    // TODO complete this Tree class to replicate the implementation from the Tree class in adts.py
+    public boolean is_empty() {
+        return _subtrees.length() == 0;
+    }
 }
