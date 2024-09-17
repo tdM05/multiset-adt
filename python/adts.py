@@ -140,27 +140,31 @@ class Tree:
                 num += subtree.count(item)
             return num
 
-    def __str__(self) -> str:
-        """Return a string representation of this tree.
+    public String toString() {
+            return this.toStringIndented(0);
+        }
 
-        For each node, its item is printed before int of its
-        descendants' items. The output is nicely indented.
+    private String toStringIndented(int depth) {
+            if (this.isEmpty()) {
+                return "";
+            } else {
+                StringBuilder sb = new StringBuilder();
+                // Add indentation based on depth
+                sb.append("  ".repeat(depth));
+                sb.append(this._root.toString()).append("\n");
 
-        You may find this method helpful for debugging.
-        """
-        # First version is commented out. This had the problem that it doesn't
-        # distinguish between different levels in the tree, and just prints out
-        # every item on a new line.
-        # if self.is_empty():
-        #     return ''
-        # else:
-        #     s = f'{self._root}\n'
-        #     for subtree in self._subtrees:
-        #         s += str(subtree)  # equivalent to subtree.__str__()
-        #     return s
-        #
-        # Instead, we call a recursive helper method.
-        return self._str_indented()
+                for (Tree<T> subtree : this._subtrees) {
+                    sb.append(subtree.toStringIndented(depth + 1));
+                }
+
+                return sb.toString();
+            }
+        }
+
+    private boolean isEmpty() {
+            return _root == null && (_subtrees == null || _subtrees.isEmpty());
+        }
+    }
 
     def _str_indented(self, depth: int = 0) -> str:
         """Return an indented string representation of this tree.
