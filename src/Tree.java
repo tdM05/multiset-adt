@@ -3,6 +3,8 @@ import java.util.List;
 
 public class Tree {
 
+
+
     private int _root;
     private List<Tree> _subtrees;
 
@@ -17,5 +19,9 @@ public class Tree {
         }
 
     }
+      public boolean is_empty() {
+        return _subtrees.length() == 0;
+    }
+
 
 }
