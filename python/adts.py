@@ -141,45 +141,31 @@ class Tree:
             return num
 
     public String toString() {
-            return this.toStringIndented(0);
-        }
+                return this.toStringIndented(0);
+            }
 
-    private String toStringIndented(int depth) {
-            if (this.isEmpty()) {
-                return "";
-            } else {
-                StringBuilder sb = new StringBuilder();
-                // Add indentation based on depth
-                sb.append("  ".repeat(depth));
-                sb.append(this._root.toString()).append("\n");
+        private String toStringIndented(int depth) {
+                if (this.isEmpty()) {
+                    return "";
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    // Add indentation based on depth
+                    sb.append("  ".repeat(depth));
+                    sb.append(this._root.toString()).append("\n");
 
-                for (Tree<T> subtree : this._subtrees) {
-                    sb.append(subtree.toStringIndented(depth + 1));
+                    for (Tree<T> subtree : this._subtrees) {
+                        sb.append(subtree.toStringIndented(depth + 1));
+                    }
+
+                    return sb.toString();
                 }
+            }
 
-                return sb.toString();
+        // This method can be placed on top though, checking if root and subtrees are empty.
+        private boolean isEmpty() {
+                return _root == null && (_subtrees == null || _subtrees.isEmpty());
             }
         }
-
-    private boolean isEmpty() {
-            return _root == null && (_subtrees == null || _subtrees.isEmpty());
-        }
-    }
-
-    def _str_indented(self, depth: int = 0) -> str:
-        """Return an indented string representation of this tree.
-
-        The indentation level is specified by the <depth> parameter.
-        """
-        if self.is_empty():
-            return ''
-        else:
-            s = '  ' * depth + str(self._root) + '\n'
-            for subtree in self._subtrees:
-                # Note that the 'depth' argument to the recursive call is
-                # modified.
-                s += subtree._str_indented(depth + 1)
-            return s
 
     def average(self) -> float:
         """Return the average of all the values in this tree.
